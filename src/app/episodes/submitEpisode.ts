@@ -29,7 +29,7 @@ export const submitEpisode = async (supabase: Supabase, data: FieldValues) => {
         }
         const sortedContestants = Object.entries(data)
             .filter(
-                ([key, _]) =>
+                ([key]) =>
                     key !== 'Series' &&
                     key !== 'Number' &&
                     key !== 'Winner' &&
@@ -37,6 +37,7 @@ export const submitEpisode = async (supabase: Supabase, data: FieldValues) => {
             )
             .map(([key, value]) => [key, Number(value)])
             .sort(
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 ([_a, aValue], [_b, bValue]) => Number(bValue) - Number(aValue)
             )
             .map(([key, value]) => {return { contestant: key.toString(), points: Number(value)}})

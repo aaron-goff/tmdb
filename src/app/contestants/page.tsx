@@ -5,14 +5,10 @@ import { Select } from '../components/Select'
 import { useState } from 'react'
 import { Supabase } from '../utils/supabase'
 import { AuthedFormProvider } from '../components/AuthedFormProvider'
-import supabaseSessionEffect from '../hooks/supabaseSessionEffect'
 import { SubmitButton } from '../components/SubmitButton'
-import {
-    ContestantColumn,
-    ContestantsUploadPayload,
-} from '../types/Contestants'
 import { SuccessOptions } from '../utils/types'
 import { submitContestant } from './submitContestant'
+import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 const seriesOptions = [
     ...new Array(19).fill(null).map((_, index) => {
@@ -56,7 +52,7 @@ export default function Contestants() {
     const [success, setSuccess] = useState(SuccessOptions.Undefined)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const session = supabaseSessionEffect(supabase, null)
+    const session = SupabaseSessionEffect(supabase, null)
 
     const onSubmit = methods.handleSubmit(async (data) => {
         setIsLoading(true)

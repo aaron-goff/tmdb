@@ -3,7 +3,7 @@ import { Supabase } from "../utils/supabase"
 import { SeriesColumn } from "../types/Series"
 import { SuccessOptions } from "../utils/types"
 
-export default function getSeriesDropdownOptions(supabase: Supabase, seriesPlaceholder: string) {
+export default function GetSeriesDropdownOptions(supabase: Supabase, seriesPlaceholder: string) {
     const [success, setSuccess] = useState(SuccessOptions.Undefined)
     const [errorMessage, setErrorMessage] = useState('');
     const [series, setSeries] = useState([
@@ -40,7 +40,7 @@ export default function getSeriesDropdownOptions(supabase: Supabase, seriesPlace
             ])
         }
         getSeries()
-    }, [])
+    }, [seriesPlaceholder, supabase])
 
     return { success, errorMessage, series }
 }

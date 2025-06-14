@@ -13,6 +13,7 @@ const columns = [
 ]
 
 export default function Stats() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<any | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
@@ -22,6 +23,7 @@ export default function Stats() {
             try {
                 const getData = await getContestants()
                 setData(JSON.parse(JSON.stringify(getData)))
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (err: any) {
                 setError(err)
             } finally {
@@ -52,12 +54,14 @@ export default function Stats() {
             <tbody>
                 {data
                     .sort(
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         (a: any, b: any) =>
                             (Array.isArray(a.Series) ? a.Series[0] : a.Series) -
                                 (Array.isArray(b.Series)
                                     ? b.Series[0]
                                     : b.Series) || a.id - b.id
                     )
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     .map((contestant: any) => (
                         <tr key={contestant.id}>
                             {columns.map((column) => (

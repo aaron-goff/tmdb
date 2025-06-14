@@ -14,7 +14,7 @@ export const Select = ({
     required,
 }: {
     multiple: boolean
-    options: any
+    options: DropdownOption[]
     name: string
     label: string
     defaultValue?: string

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { Supabase } from "../utils/supabase"
-import { UseFormReturn, FieldValues } from "react-hook-form"
 import { SeriesColumn } from "../types/Series"
 import { SuccessOptions } from "../utils/types"
+import { UseFormMethods } from "../types/UseFormMethods"
 
-export const getSeriesContestantsBySettingPosition = (supabase: Supabase, methods: UseFormReturn<FieldValues, any, FieldValues>, seriesName?: string,) => {
+export const GetSeriesContestantsBySettingPosition = (supabase: Supabase, methods: UseFormMethods, seriesName?: string,) => {
     const [left, setLeft] = useState('')
     const [middleLeft, setMiddleLeft] = useState('')
     const [middle, setMiddle] = useState('')
@@ -18,7 +18,7 @@ export const getSeriesContestantsBySettingPosition = (supabase: Supabase, method
             if (seriesName) {
                 const { data, error } = await supabase.getSeries([SeriesColumn.Left, SeriesColumn.MiddleLeft, SeriesColumn.Middle, SeriesColumn.MiddleRight, SeriesColumn.Right], [{ column: SeriesColumn.Name, value: seriesName}])
                 if (data) {
-                    const episodeData = data as any[]
+                    const episodeData = data as unknown as {Left: string; 'Middle-Left': string; Middle: string; 'Middle-Right': string; Right: string}[]
                     setLeft(episodeData[0].Left)
                     setMiddleLeft(episodeData[0]['Middle-Left'])
                     setMiddle(episodeData[0].Middle)
@@ -34,7 +34,7 @@ export const getSeriesContestantsBySettingPosition = (supabase: Supabase, method
         // Debounce the API call    
         const timeoutId = setTimeout(getContestants, 300)
         return () => clearTimeout(timeoutId)
-    }, [seriesName, methods.setValue])
+    }, [seriesName, methods.setValue, supabase])
 
     return { success, errorMessage, left, middleLeft, middle, middleRight, right}
 }

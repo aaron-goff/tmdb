@@ -5,12 +5,11 @@ import { Supabase } from '../utils/supabase'
 import { Input } from '../components/Input'
 import { Select } from '../components/Select'
 import { AuthedFormProvider } from '../components/AuthedFormProvider'
-import supabaseSessionEffect from '../hooks/supabaseSessionEffect'
 import { SuccessOptions } from '../utils/types'
-import getSeriesDropdownOptions from '../hooks/getSeriesDropdownOptions'
-import getSeriesContestants from '../hooks/getSeriesContestants'
+import GetSeriesDropdownOptions from '../hooks/GetSeriesDropdownOptions'
+import GetSeriesContestants from '../hooks/GetSeriesContestants'
 import { submitEpisode } from './submitEpisode'
-import { error } from 'console'
+import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 export default function Episodes() {
     const methods = useForm({})
@@ -22,17 +21,17 @@ export default function Episodes() {
     })
 
     const seriesPlaceholder = 'Select a series...'
-    const session = supabaseSessionEffect(supabase, null)
+    const session = SupabaseSessionEffect(supabase, null)
     const {
-        success: seriesSuccess,
-        errorMessage: seriesErrorMessage,
+        // success: seriesSuccess,
+        // errorMessage: seriesErrorMessage,
         series,
-    } = getSeriesDropdownOptions(supabase, seriesPlaceholder)
+    } = GetSeriesDropdownOptions(supabase, seriesPlaceholder)
     const {
-        success: contestantsSuccess,
-        errorMessage: contestantsErrorMessage,
+        // success: contestantsSuccess,
+        // errorMessage: contestantsErrorMessage,
         contestants,
-    } = getSeriesContestants(supabase, methods, seriesName)
+    } = GetSeriesContestants(supabase, methods, seriesName)
     const [uploadSuccess, setUploadSuccess] = useState(SuccessOptions.Undefined)
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)

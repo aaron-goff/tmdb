@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import { FieldValues, FormProvider, UseFormReturn } from 'react-hook-form'
+import { FormProvider } from 'react-hook-form'
 import { Session } from '@supabase/auth-js'
+import { UseFormMethods } from '../types/UseFormMethods'
 
 export const AuthedFormProvider = ({
     session,
@@ -8,7 +9,7 @@ export const AuthedFormProvider = ({
     children,
 }: {
     session: Session | null
-    methods: UseFormReturn<FieldValues, any, FieldValues>
+    methods: UseFormMethods
     children: ReactNode
 }) => {
     const isAuthed = session?.user.role === 'authenticated'

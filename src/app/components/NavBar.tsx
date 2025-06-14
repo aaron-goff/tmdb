@@ -2,11 +2,11 @@
 import React from 'react'
 import { Supabase } from '../utils/supabase'
 import Link from 'next/link'
-import supabaseSessionEffect from '../hooks/supabaseSessionEffect'
+import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 const Navbar = () => {
     const supabase = new Supabase()
-    const supabaseSession = supabaseSessionEffect(supabase, null)
+    const supabaseSession = SupabaseSessionEffect(supabase, null)
 
     const links = [
         {

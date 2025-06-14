@@ -1,8 +1,9 @@
-import { createClient, PostgrestError, SupabaseClient } from "@supabase/supabase-js";
+import { createClient} from "@supabase/supabase-js";
 import { ContestantColumn, ContestantsUploadPayload } from "../types/Contestants";
 import { SeriesColumn, SeriesPayload } from "../types/Series";
 import { EpisodeColumn, EpisodePayload } from "../types/Episodes";
 import { TaskColumn, TaskPayload, TaskScoringPayload } from "../types/Tasks";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config({ path: '.env' })
 
 const supabaseUrl = process.env['NEXT_PUBLIC_SUPABASE_URL']
@@ -75,7 +76,7 @@ export class Supabase {
     }
 
     updateEpisode = async (columnsToUpdate: {column: EpisodeColumn, value: string | string[] | number[]}[], filters: {column: EpisodeColumn, value: string | string[] | number[]}[]) => {
-        const updatePayload: Partial<Record<EpisodeColumn, any>> = {};
+        const updatePayload: Partial<Record<EpisodeColumn, string | string[] | number | number[]>> = {};
         columnsToUpdate.forEach(({ column, value}) => {
             updatePayload[column] = value
         })

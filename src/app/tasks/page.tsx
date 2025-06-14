@@ -1,21 +1,21 @@
 'use client'
 import { useState } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { FieldValues, useForm, useWatch } from 'react-hook-form'
 import { Supabase } from '../utils/supabase'
 import { Input } from '../components/Input'
 import { Select } from '../components/Select'
-import supabaseSessionEffect from '../hooks/supabaseSessionEffect'
 import { AuthedFormProvider } from '../components/AuthedFormProvider'
-import getSeriesDropdownOptions from '../hooks/getSeriesDropdownOptions'
-import { getEpisodesBySeries } from '../hooks/getEpisodesBySeries'
-import { getSeriesContestantsBySettingPosition } from '../hooks/getSeriesContestantsBySittingPositions'
-import getSeriesContestants from '../hooks/getSeriesContestants'
 import { submitTask } from './submitTask'
 import { SuccessOptions } from '../utils/types'
+import { GetEpisodesBySeries } from '../hooks/GetEpisodesBySeries'
+import GetSeriesDropdownOptions from '../hooks/GetSeriesDropdownOptions'
+import GetSeriesContestants from '../hooks/GetSeriesContestants'
+import { GetSeriesContestantsBySettingPosition } from '../hooks/GetSeriesContestantsBySittingPositions'
+import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 export default function Tasks() {
     const supabase = new Supabase()
-    const session = supabaseSessionEffect(supabase, null)
+    const session = SupabaseSessionEffect(supabase, null)
     const methods = useForm()
     const defaultContestant = {
         value: 'Enter series name first',
@@ -47,10 +47,10 @@ export default function Tasks() {
     const [uploadSuccess, setUploadSuccess] = useState(SuccessOptions.Undefined)
     const [uploadErrorMessage, setUploadErrorMessage] = useState('')
     const {
-        success: contestantsOptionsSuccess,
-        errorMessage: contestantsOptionsErrorMessage,
+        // success: contestantsOptionsSuccess,
+        // errorMessage: contestantsOptionsErrorMessage,
         contestantOptions,
-    } = getSeriesContestants(
+    } = GetSeriesContestants(
         supabase,
         methods,
         seriesName,
@@ -58,28 +58,28 @@ export default function Tasks() {
         contestantPlaceholder
     )
     const {
-        success: contestantsSuccess,
-        errorMessage: contestantsErrorMessage,
+        // success: contestantsSuccess,
+        // errorMessage: contestantsErrorMessage,
         left,
         middleLeft,
         middle,
         middleRight,
         right,
-    } = getSeriesContestantsBySettingPosition(supabase, methods, seriesName)
+    } = GetSeriesContestantsBySettingPosition(supabase, methods, seriesName)
     const {
-        success: seriesSuccess,
-        errorMessage: seriesErrorMessage,
+        // success: seriesSuccess,
+        // errorMessage: seriesErrorMessage,
         series,
-    } = getSeriesDropdownOptions(supabase, seriesPlaceholder)
+    } = GetSeriesDropdownOptions(supabase, seriesPlaceholder)
     const {
-        success: episodesSuccess,
-        errorMessage: episodesErrorMessage,
+        // success: episodesSuccess,
+        // errorMessage: episodesErrorMessage,
         episodes,
-    } = getEpisodesBySeries(supabase, methods, seriesName, episodePlaceholder)
+    } = GetEpisodesBySeries(supabase, methods, seriesName, episodePlaceholder)
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const onSubmit = methods.handleSubmit(async (data) => {
+    const onSubmit = methods.handleSubmit(async (data: FieldValues) => {
         setIsLoading(true)
         const { success, errorMessage } = await submitTask(supabase, data)
         setUploadSuccess(success)

@@ -2,7 +2,7 @@ import { Session } from "@supabase/auth-js"
 import { useEffect, useState } from "react"
 import { Supabase } from "../utils/supabase"
 
-export default function supabaseSessionEffect(supabase: Supabase, initialValue: Session | null) {
+export default function SupabaseSessionEffect(supabase: Supabase, initialValue: Session | null) {
     const [session, setSession] = useState<Session | null>(initialValue)
     
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function supabaseSessionEffect(supabase: Supabase, initialValue: 
         })
 
         return () => subscription.unsubscribe()
-    }, [])
+    }, [supabase.client.auth])
 
     return session
 }

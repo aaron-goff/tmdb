@@ -3,7 +3,6 @@ import { findInputError } from '../utils/findInputError'
 import { isFormInvalid } from '../utils/isFormInvalid'
 import { AnimatePresence } from 'framer-motion'
 import { InputError } from './InputError'
-import { useState } from 'react'
 
 export const Input = ({
     label,

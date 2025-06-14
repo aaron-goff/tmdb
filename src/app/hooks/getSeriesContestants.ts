@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { Supabase } from "../utils/supabase"
 import { ContestantColumn } from "../types/Contestants"
 import { DropdownOption, SuccessOptions } from "../utils/types"
-import { FieldValues, UseFormReturn } from "react-hook-form"
+import { UseFormMethods } from "../types/UseFormMethods"
 
-export default function getSeriesContestants(supabase: Supabase, methods: UseFormReturn<FieldValues, any, FieldValues>, seriesName?: string, defaultContestantOptions?: DropdownOption[], updatedPlaceholder?: DropdownOption) {
+export default function GetSeriesContestants(supabase: Supabase, methods: UseFormMethods, seriesName?: string, defaultContestantOptions?: DropdownOption[], updatedPlaceholder?: DropdownOption) {
     const [contestants, setContestants] = useState(new Array(5).fill(null))
     const [success, setSuccess] = useState(SuccessOptions.Undefined)
     const [errorMessage, setErrorMessage] = useState('');
@@ -54,7 +54,7 @@ export default function getSeriesContestants(supabase: Supabase, methods: UseFor
         // Debounce the API call
         const timeoutId = setTimeout(getContestants, 300)
         return () => clearTimeout(timeoutId)
-    }, [seriesName, methods.setValue])
+    }, [seriesName, methods.setValue, supabase, updatedPlaceholder, defaultContestantOptions])
 
     return {success, errorMessage, contestants, contestantOptions, getContestantsIsLoading}
 }

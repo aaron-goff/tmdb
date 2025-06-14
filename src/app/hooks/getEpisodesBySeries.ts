@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { DropdownOption, SuccessOptions } from "../utils/types";
 import { Supabase } from "../utils/supabase";
 import { EpisodeColumn } from "../types/Episodes";
-import { UseFormReturn, FieldValues } from "react-hook-form";
+import { UseFormMethods } from "../types/UseFormMethods";
 
-export const getEpisodesBySeries = (supabase: Supabase, methods: UseFormReturn<FieldValues, any, FieldValues>,seriesName: string, episodePlaceholder: DropdownOption) => {
+export const GetEpisodesBySeries = (supabase: Supabase, methods: UseFormMethods,seriesName: string, episodePlaceholder: DropdownOption) => {
     const [success, setSuccess] = useState(SuccessOptions.Undefined)
     const [errorMessage, setErrorMessage] = useState('');
     const [episodes, setEpisodes] = useState([
@@ -27,6 +27,6 @@ export const getEpisodesBySeries = (supabase: Supabase, methods: UseFormReturn<F
             setEpisodes([episodePlaceholder, ...options])
         }
         getEpisodes()
-    }, [seriesName, methods.setValue])
+    }, [seriesName, methods.setValue, supabase, episodePlaceholder])
     return { success, errorMessage, episodes }
 }

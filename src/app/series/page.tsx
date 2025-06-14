@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { Select } from '../components/Select'
 import { Supabase } from '../utils/supabase'
 import { SuccessOptions } from '../utils/types'
-import supabaseSessionEffect from '../hooks/supabaseSessionEffect'
 import { AuthedFormProvider } from '../components/AuthedFormProvider'
-import getSeriesContestants from '../hooks/getSeriesContestants'
+import GetSeriesContestants from '../hooks/GetSeriesContestants'
 import { submitSeries } from './submitSeries'
+import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 export default function Series() {
     const supabase = new Supabase()
@@ -20,7 +20,7 @@ export default function Series() {
         },
     ]
 
-    const session = supabaseSessionEffect(supabase, null)
+    const session = SupabaseSessionEffect(supabase, null)
     const methods = useForm()
     const [uploadSuccess, setUploadSuccess] = useState(SuccessOptions.Undefined)
     const [uploadErrorMessage, setUploadErrorMessage] = useState('')
@@ -30,11 +30,11 @@ export default function Series() {
         name: 'Name',
     })
     const {
-        success: getContestantsSuccess,
-        errorMessage: getContestantsErrorMessage,
+        // success: getContestantsSuccess,
+        // errorMessage: getContestantsErrorMessage,
         contestantOptions,
         getContestantsIsLoading,
-    } = getSeriesContestants(
+    } = GetSeriesContestants(
         supabase,
         methods,
         seriesName,
@@ -134,6 +134,7 @@ export default function Series() {
                                             name={x}
                                             label={x}
                                             required={true}
+                                            key={x}
                                         />
                                     )
                                 })}

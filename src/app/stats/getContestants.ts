@@ -12,8 +12,8 @@ export const getContestants = async () => {
     if (episodeError) throw new Error(JSON.stringify(episodeError));
     const { data: taskData, error: taskError } = await supabase.from('Tasks').select(`*, TaskScoring( * )`)
     if (taskError) throw new Error(JSON.stringify(taskError));
-    const { data: taskScoringData, error: taskScoringError } = await supabase.from('TaskScoring').select();
-    if (taskScoringError) throw new Error(JSON.stringify(taskScoringError))
+    // const { data: taskScoringData, error: taskScoringError } = await supabase.from('TaskScoring').select();
+    // if (taskScoringError) throw new Error(JSON.stringify(taskScoringError))
 
     // const liveTasks = taskData.filter(x => x.IsLiveTask).map(x => x.Name)
 

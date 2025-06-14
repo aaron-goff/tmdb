@@ -13,7 +13,7 @@ export const submitTask = async (supabase: Supabase, data: FieldValues) => {
     const IsLiveTask = data.IsLiveTask;
     const IsPrizeTask = data.IsPrizeTask;
     let TotalPoints = 0;
-    let tempTaskPayload: Partial<TaskScoringPayload> = {}
+    const tempTaskPayload: Partial<TaskScoringPayload> = {}
     for (const position of ['Left', 'Middle-Left', 'Middle', 'Middle-Right', 'Right']) {
         const value = data[position];
         
@@ -21,8 +21,10 @@ export const submitTask = async (supabase: Supabase, data: FieldValues) => {
             TotalPoints += Number(value)
         }
         if (tempTaskPayload[value as keyof TaskScoringPayload]) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (tempTaskPayload[value as keyof TaskScoringPayload] as string[]).push((getSeriesData as any[])[0][position])
         } else {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (tempTaskPayload[value as keyof TaskScoringPayload] as string[]) = [(getSeriesData as any[])[0][position]]
         }
     }

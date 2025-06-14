@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     compiler: {
         removeConsole: false
     },
-    assetPrefix: isProd ? '/tmdb/' : '',
-    basePath: isProd ? '/tmdb/' : '',
+    assetPrefix: isProd ? '/tmdb' : '',
+    basePath: isProd ? '/tmdb' : '',
     output: 'export',
     images: {
         'unoptimized': true
