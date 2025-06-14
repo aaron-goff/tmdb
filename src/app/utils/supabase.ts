@@ -10,6 +10,9 @@ const supabaseUrl = process.env['NEXT_PUBLIC_SUPABASE_URL']
 const supabaseKey = process.env['NEXT_PUBLIC_SUPABASE_KEY']
 
 if (!supabaseUrl || !supabaseKey) {
+    console.log('supabaseurl', supabaseUrl)
+    console.log('supabasekey', supabaseKey)
+    console.log(JSON.stringify(process.env))
     throw new Error(`SupabaseUrl or SupabaseKey is not provided.`)
 }
 
