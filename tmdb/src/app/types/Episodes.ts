@@ -1,0 +1,41 @@
+export type EpisodePayload = {
+    Series: string,
+    Number: number,
+    Name: string,
+    'Prize Task': string,
+    'Live Task': string,
+    'Recorded Tasks': string[],
+    'Additional Tasks': string[] | null,
+    First: string[] | null,
+    Second: string[] | null,
+    Third: string[] | null,
+    Fourth: string[] | null,
+    Fifth: string[] | null,
+    'First Points': number | null,
+    'Second Points': number | null,
+    'Third Points': number | null,
+    'Fourth Points': number | null,
+    'Fifth Points': number | null,
+    'Total Points': number
+}
+
+export enum EpisodeColumn {
+    Name = 'Name',
+    Number = 'Number',
+    Series = 'Series',
+    First = 'First',
+    Second = 'Second',
+    Third = 'Third',
+    Fourth = 'Fourth',
+    Fifth = 'Fifth',
+    FirstPoints = 'First Points',
+    SecondPoints = 'Second Points',
+    ThirdPoints = 'Third Points',
+    FourthPoints = 'Fourth Points',
+    FifthPoints = 'Fifth Points',
+    TotalPoints = 'Total Points',
+    PrizeTask = 'Prize Task',
+    LiveTask = 'Live Task',
+    RecordedTasks = 'Recorded Tasks',
+    AdditionalTasks = 'Additional Tasks'
+}
