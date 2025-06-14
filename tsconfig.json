@@ -22,7 +22,8 @@
             "@/*": ["./src/*"],
             "@hooks": ["./src/app/hooks"],
             "@components": ["./src/app/components"]
-        }
+        },
+        "forceConsistentCasingInFileNames": false,
     },
     "include": [
         "next-env.d.ts",
