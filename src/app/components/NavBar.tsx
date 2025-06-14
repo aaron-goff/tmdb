@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import { Supabase } from '../utils/supabase'
-import Link from 'next/link'
 import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
+import Link from 'next/link'
 
 const Navbar = () => {
     const supabase = new Supabase()
