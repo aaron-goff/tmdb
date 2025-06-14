@@ -1,14 +1,11 @@
 'use client'
 import { useForm } from 'react-hook-form'
-import { Input } from '../components/Input'
-import { Select } from '../components/Select'
+import { AuthedFormProvider, Input, Select, SubmitButton } from '@components'
 import { useState } from 'react'
 import { Supabase } from '../utils/supabase'
-import { AuthedFormProvider } from '../components/AuthedFormProvider'
-import { SubmitButton } from '../components/SubmitButton'
 import { SuccessOptions } from '../utils/types'
 import { submitContestant } from './submitContestant'
-import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
+import { SupabaseSessionEffect } from '@hooks'
 
 const seriesOptions = [
     ...new Array(19).fill(null).map((_, index) => {

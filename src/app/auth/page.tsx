@@ -3,7 +3,7 @@
 import { Supabase } from '../utils/supabase'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { Auth as SupabaseAuth } from '@supabase/auth-ui-react'
-import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
+import { SupabaseSessionEffect } from '@hooks'
 
 export default function Auth() {
     const supabase = new Supabase()

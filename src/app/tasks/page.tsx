@@ -2,16 +2,16 @@
 import { useState } from 'react'
 import { FieldValues, useForm, useWatch } from 'react-hook-form'
 import { Supabase } from '../utils/supabase'
-import { Input } from '../components/Input'
-import { Select } from '../components/Select'
-import { AuthedFormProvider } from '../components/AuthedFormProvider'
+import { AuthedFormProvider, Input, Select } from '@components'
 import { submitTask } from './submitTask'
 import { SuccessOptions } from '../utils/types'
-import { GetEpisodesBySeries } from '../hooks/GetEpisodesBySeries'
-import GetSeriesDropdownOptions from '../hooks/GetSeriesDropdownOptions'
-import GetSeriesContestants from '../hooks/GetSeriesContestants'
-import { GetSeriesContestantsBySettingPosition } from '../hooks/GetSeriesContestantsBySittingPositions'
-import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
+import {
+    GetEpisodesBySeries,
+    GetSeriesContestants,
+    GetSeriesContestantsBySettingPosition,
+    GetSeriesDropdownOptions,
+    SupabaseSessionEffect,
+} from '@hooks'
 
 export default function Tasks() {
     const supabase = new Supabase()

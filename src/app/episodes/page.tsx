@@ -2,14 +2,14 @@
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Supabase } from '../utils/supabase'
-import { Input } from '../components/Input'
-import { Select } from '../components/Select'
-import { AuthedFormProvider } from '../components/AuthedFormProvider'
+import { AuthedFormProvider, Input, Select } from '@components'
 import { SuccessOptions } from '../utils/types'
-import GetSeriesDropdownOptions from '../hooks/GetSeriesDropdownOptions'
-import GetSeriesContestants from '../hooks/GetSeriesContestants'
+import {
+    GetSeriesDropdownOptions,
+    GetSeriesContestants,
+    SupabaseSessionEffect,
+} from '@hooks'
 import { submitEpisode } from './submitEpisode'
-import SupabaseSessionEffect from '../hooks/SupabaseSessionEffect'
 
 export default function Episodes() {
     const methods = useForm({})
