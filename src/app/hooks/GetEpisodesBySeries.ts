@@ -27,6 +27,6 @@ export const GetEpisodesBySeries = (supabase: Supabase, methods: UseFormMethods,
             setEpisodes([episodePlaceholder, ...options])
         }
         getEpisodes()
-    }, [seriesName, methods.setValue, supabase, episodePlaceholder])
+    }, [seriesName, methods.setValue])
     return { success, errorMessage, episodes }
 }

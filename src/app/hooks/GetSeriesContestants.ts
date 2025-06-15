@@ -54,7 +54,7 @@ export default function GetSeriesContestants(supabase: Supabase, methods: UseFor
         // Debounce the API call
         const timeoutId = setTimeout(getContestants, 300)
         return () => clearTimeout(timeoutId)
-    }, [seriesName, methods.setValue, supabase, updatedPlaceholder, defaultContestantOptions])
+    }, [seriesName, methods.setValue])
 
     return {success, errorMessage, contestants, contestantOptions, getContestantsIsLoading}
 }
